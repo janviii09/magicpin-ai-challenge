@@ -75,6 +75,19 @@ async def startup():
         logger.warning("Dataset load failed (will accept pushes): %s", e)
 
 
+@app.get("/")
+async def root():
+    return {
+        "service": "Vera 2.0 — Merchant AI Assistant (magicpin AI Challenge)",
+        "status": "healthy",
+        "version": config.VERSION,
+        "docs_url": "/docs",
+        "healthz_url": "/v1/healthz",
+        "metadata_url": "/v1/metadata",
+    }
+
+
+
 # ═══════════════════════════════════════════════════════════════
 #  POST /v1/context — receive context push
 # ═══════════════════════════════════════════════════════════════
